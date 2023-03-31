@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.android.util
+package com.seytkalievm.studyhub.android.presentation.util
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector

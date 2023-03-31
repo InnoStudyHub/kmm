@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.android.session.recent
+package com.seytkalievm.studyhub.android.presentation.session.for_you
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,14 +14,14 @@ import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
-fun RecentPage(){
+fun ForYouPage(){
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Recent Page",
+            text = "For You Page",
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             color = Color.Green

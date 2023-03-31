@@ -1,6 +1,10 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -51,4 +55,17 @@ dependencies {
 
     implementation ("com.google.accompanist:accompanist-pager:0.28.0")
     implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+
+    implementation("com.google.dagger:hilt-android:2.44.2")
+    implementation("androidx.core:core-ktx:1.9.0")
+    kapt("com.google.dagger:hilt-android-compiler:2.44.2")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("androidx.compose.material:material-icons-extended:1.3.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

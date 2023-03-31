@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalPagerApi::class)
 
-package com.seytkalievm.studyhub.android.session
+package com.seytkalievm.studyhub.android.presentation.session
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.google.accompanist.pager.*
-import com.seytkalievm.studyhub.android.session.for_you.ForYouPage
-import com.seytkalievm.studyhub.android.session.recent.RecentPage
-import com.seytkalievm.studyhub.android.util.TabItem
+import com.seytkalievm.studyhub.android.presentation.session.for_you.ForYouPage
+import com.seytkalievm.studyhub.android.presentation.session.recent.RecentPage
+import com.seytkalievm.studyhub.android.presentation.util.TabItem
 import kotlinx.coroutines.launch
 
 
