@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.domain
+package com.seytkalievm.studyhub.domain.model
 
 class Deck(
     val id: Int,

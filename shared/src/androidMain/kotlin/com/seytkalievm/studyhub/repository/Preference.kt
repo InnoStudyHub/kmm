@@ -1,6 +1,6 @@
 package com.seytkalievm.studyhub.repository
 
-import com.seytkalievm.studyhub.model.KMMContext
+import com.seytkalievm.studyhub.domain.model.KMMContext
 
 const val SP_NAME = "kmm_app"
 

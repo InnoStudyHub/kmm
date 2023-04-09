@@ -1,6 +1,6 @@
-package com.seytkalievm.studyhub.repository
+package com.seytkalievm.studyhub.domain.repository
 
-import com.seytkalievm.studyhub.model.KMMContext
+import com.seytkalievm.studyhub.domain.model.KMMContext
 
 class KMMPreference(private val context: KMMContext) {
 

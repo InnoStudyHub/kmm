@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.model
+package com.seytkalievm.studyhub.domain.model
 
 import android.app.Application
 
