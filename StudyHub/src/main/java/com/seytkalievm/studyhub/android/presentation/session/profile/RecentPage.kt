@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.android.presentation.session.for_you
+package com.seytkalievm.studyhub.android.presentation.session.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,18 +14,17 @@ import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
-fun ForYouPage(){
+fun ProfilePage() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "For You Page",
+            text = "Profile",
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             color = Color.Green
         )
     }
-
 }
