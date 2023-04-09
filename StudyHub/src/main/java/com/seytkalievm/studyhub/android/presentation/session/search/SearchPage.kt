@@ -1,4 +1,4 @@
-package com.seytkalievm.studyhub.android.presentation.session.recent
+package com.seytkalievm.studyhub.android.presentation.session.search
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -14,18 +14,17 @@ import androidx.compose.ui.unit.sp
 
 @Preview
 @Composable
-fun RecentPage(){
+fun SearchPage() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Recent Page",
+            text = "Search",
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             color = Color.Green
         )
     }
-
 }

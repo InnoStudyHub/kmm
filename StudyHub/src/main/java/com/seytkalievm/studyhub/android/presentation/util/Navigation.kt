@@ -1,12 +1,11 @@
 package com.seytkalievm.studyhub.android.presentation.util
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.seytkalievm.studyhub.android.presentation.auth.login.LoginScreen
-import com.seytkalievm.studyhub.android.presentation.session.HomeScreen
+import com.seytkalievm.studyhub.android.presentation.session.MainScreen
 
 
 @Composable
@@ -18,7 +17,7 @@ fun Navigation () {
     NavHost(navController = navController, startDestination = startDest) {
         if (isLoggedIn) {
             composable(Screen.HomeScreen.route) {
-                HomeScreen()
+                MainScreen()
             }
         } else {
             composable(Screen.AuthScreen.route) {
