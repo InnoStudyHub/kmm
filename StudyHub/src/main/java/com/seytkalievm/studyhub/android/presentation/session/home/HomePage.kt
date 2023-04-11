@@ -1,6 +1,9 @@
 package com.seytkalievm.studyhub.android.presentation.session.home
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -38,7 +41,7 @@ fun HomePage(
             items(state.decks.size) { i ->
                 DeckItem(
                     deck = state.decks[i],
-                    onDeckClick = {  },
+                    onDeckClick = { },
                 )
             }
         }
