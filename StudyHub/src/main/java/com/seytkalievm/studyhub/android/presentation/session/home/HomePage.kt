@@ -11,14 +11,15 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import com.seytkalievm.studyhub.android.presentation.session.common_widgets.DeckItem
+import com.seytkalievm.studyhub.android.presentation.util.Screen
 
-@Preview
 @Composable
 fun HomePage(
+    navController: NavController,
     viewModel: HomePageViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
@@ -41,7 +42,9 @@ fun HomePage(
             items(state.decks.size) { i ->
                 DeckItem(
                     deck = state.decks[i],
-                    onDeckClick = { },
+                    onDeckClick = {
+                        navController.navigate(Screen.DeckViewScreen.route)
+                    },
                 )
             }
         }
