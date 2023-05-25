@@ -36,9 +36,8 @@ class HomePageViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val token = authApi.login("admin@studyhub.kz", "diasikadmin")
-            val result = studyHubApi.getAllDecks(token.access)
-            println(result)
+            authApi.login("admin@studyhub.kz", "diasikadmin")
+            println( authApi.refreshAccessToken())
         }
     }
 }

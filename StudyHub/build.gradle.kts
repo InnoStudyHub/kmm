@@ -55,6 +55,7 @@ dependencies {
 
     implementation ("com.google.accompanist:accompanist-pager:0.28.0")
     implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+    implementation("androidx.datastore:datastore-preferences:1.1.0-dev01")
 
     implementation("com.google.dagger:hilt-android:2.44.2")
     implementation("androidx.core:core-ktx:1.10.1")
