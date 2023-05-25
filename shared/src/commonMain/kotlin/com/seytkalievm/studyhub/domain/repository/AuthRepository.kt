@@ -63,4 +63,8 @@ class AuthRepository(private val dataStore: DataStore<Preferences>) : AuthApi {
 
         return access
     }
+
+    override suspend fun isLoggedIn(): Boolean {
+        return dataStore.data.map { it[accessToken] }.first() != null
+    }
 }
