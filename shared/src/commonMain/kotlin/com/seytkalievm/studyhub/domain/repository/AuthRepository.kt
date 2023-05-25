@@ -24,7 +24,7 @@ class AuthRepository(private val dataStore: DataStore<Preferences>) : AuthApi {
     private val accessToken = stringPreferencesKey("access")
     private val refreshToken = stringPreferencesKey("refresh")
 
-    override suspend fun login(email: String, password: String): Token {
+    override suspend fun login(email: String, password: String) {
         val response = httpClient.post("$BaseUrl/auth/login/") {
 
             header("X-API-KEY", ApiKey)
@@ -39,8 +39,6 @@ class AuthRepository(private val dataStore: DataStore<Preferences>) : AuthApi {
             preferences[accessToken] = token.access
             preferences[refreshToken] = token.refresh
         }
-
-        return token
     }
 
     override suspend fun refreshAccessToken(): String {

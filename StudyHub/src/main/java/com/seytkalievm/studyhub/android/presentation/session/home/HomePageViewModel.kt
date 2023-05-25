@@ -1,6 +1,5 @@
 package com.seytkalievm.studyhub.android.presentation.session.home
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -36,8 +35,9 @@ class HomePageViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            //TODO убрать отсюда логин и передавать деки в стейт
             authApi.login("admin@studyhub.kz", "diasikadmin")
-            println( authApi.refreshAccessToken())
+            studyHubApi.getAllDecks()
         }
     }
 }

@@ -27,8 +27,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideStudyHubApi(): StudyHubApi {
-        return StudyHubRepository()
+    fun provideStudyHubApi(@ApplicationContext context: Context): StudyHubApi {
+        return StudyHubRepository(getDataStore(context))
     }
 
     @Provides
