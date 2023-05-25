@@ -4,6 +4,8 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.seytkalievm.studyhub.domain.api.AuthApi
+import com.seytkalievm.studyhub.domain.api.StudyHubApi
 import com.seytkalievm.studyhub.domain.datasource.DeckDataSource
 import com.seytkalievm.studyhub.domain.model.Deck
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,18 +18,27 @@ import javax.inject.Inject
 @HiltViewModel
 class HomePageViewModel @Inject constructor(
     private val dataSource: DeckDataSource,
-    private val savedStateHandle: SavedStateHandle
+    private val savedStateHandle: SavedStateHandle,
+    private val studyHubApi: StudyHubApi,
+    private val authApi: AuthApi
 ) : ViewModel() {
     private val decks = savedStateHandle.getStateFlow("decks", listOf<Deck>())
 
     val state = combine(decks) { decks ->
-        Log.i("HomePageViewModel", ": $decks")
         HomePageState(decks = decks[0])
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomePageState())
 
     fun loadDecks(){
         viewModelScope.launch {
             savedStateHandle["decks"] = dataSource.getPopularDecks()
+        }
+    }
+
+    init {
+        viewModelScope.launch {
+            val token = authApi.login("admin@studyhub.kz", "diasikadmin")
+            val result = studyHubApi.getAllDecks(token.access)
+            println(result)
         }
     }
 }

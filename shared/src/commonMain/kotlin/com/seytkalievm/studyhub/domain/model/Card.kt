@@ -1,35 +1,18 @@
 package com.seytkalievm.studyhub.domain.model
 
-class Card(
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Card(
+    @SerialName("card_id")
     val id: Int,
+    @SerialName("question_text")
     val question: String,
+    @SerialName("question_image")
     val questionImageUrl: String?,
+    @SerialName("answer_text")
     val answer: String?,
+    @SerialName("answer_images")
     val answerImageUrls: List<String>?
-) {
-    companion object {
-        fun fromJson(json: Map<String, Any?>): Card {
-            var answerImages: MutableList<String>? = null
-            var questionImage: String? = null
-            var answer: String? = null
-            if (json["answer_images"] != null) {
-                answerImages = mutableListOf()
-                val answerImagesJson = json["answer_images"] as List<*>
-                answerImagesJson.forEach { answerImages += it as String }
-            }
-            if (json["question_image"] != null) {
-                questionImage = json["question_image"] as String
-            }
-            if (json["answer_text"] != null) {
-                answer = json["answer_text"] as String
-            }
-            return Card(
-                id = json["card_id"] as Int,
-                question = json["question_text"] as String,
-                questionImageUrl = questionImage,
-                answer = answer,
-                answerImageUrls = answerImages
-            )
-        }
-    }
-}
+)
