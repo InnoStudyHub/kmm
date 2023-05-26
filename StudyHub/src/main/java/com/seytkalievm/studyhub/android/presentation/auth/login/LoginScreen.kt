@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.seytkalievm.studyhub.android.presentation.auth.EmailTextField
 import com.seytkalievm.studyhub.android.presentation.auth.PasswordTextField
@@ -15,7 +15,7 @@ import com.seytkalievm.studyhub.android.presentation.auth.PasswordTextField
 @Composable
 fun LoginScreen(
     navController: NavController,
-    loginViewModel: LoginViewModel = viewModel()
+    loginViewModel: LoginViewModel = hiltViewModel()
 ) {
     Scaffold { paddingValues ->
         Column(

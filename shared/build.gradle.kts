@@ -2,6 +2,7 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("com.squareup.sqldelight")
+    kotlin("plugin.serialization") version "1.8.21"
 }
 
 kotlin {
@@ -24,7 +25,22 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val ktorVersion = "2.3.0"
+        val serializationVersion = "1.5.1"
+
+        val commonMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+
+                implementation("androidx.collection:collection:1.3.0-dev01")
+                implementation("androidx.datastore:datastore-core-okio:1.1.0-dev01")
+                implementation("androidx.datastore:datastore-preferences-core:1.1.0-dev01")
+                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+                implementation("io.ktor:ktor-client-logging:$ktorVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -34,15 +50,19 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("com.squareup.sqldelight:android-driver:1.5.3")
+                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
         }
         val androidUnitTest by getting
+
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
         val iosMain by creating {
             dependencies {
                 implementation("com.squareup.sqldelight:native-driver:1.5.3")
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
             }
 
             dependsOn(commonMain)
@@ -67,9 +87,8 @@ android {
     compileSdk = 33
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
     }
 }
 dependencies {
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.10.1")
 }
