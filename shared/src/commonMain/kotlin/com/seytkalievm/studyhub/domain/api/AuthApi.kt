@@ -6,5 +6,7 @@ interface AuthApi {
 
     suspend fun refreshAccessToken(): String
 
+    suspend fun logout()
+
     suspend fun isLoggedIn(): Boolean
 }

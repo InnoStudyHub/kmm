@@ -22,7 +22,7 @@ fun Navigation(navController: NavHostController) {
             SearchPage()
         }
         composable(NavigationItem.Profile.route) {
-            ProfilePage()
+            ProfilePage(navController)
         }
         composable(Screen.DeckViewScreen.route) {
             DeckViewPage()
