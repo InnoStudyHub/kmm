@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.4.3")
     implementation("androidx.compose.foundation:foundation:1.4.3")
     implementation("androidx.compose.material:material:1.4.3")
-    implementation("androidx.activity:activity-compose:1.7.1")
+    implementation("androidx.activity:activity-compose:1.7.2")
 
     implementation("androidx.navigation:navigation-compose:2.5.3")
 
@@ -57,7 +57,7 @@ dependencies {
     implementation ("com.google.accompanist:accompanist-pager-indicators:0.28.0")
     implementation("androidx.datastore:datastore-preferences:1.1.0-dev01")
 
-    implementation("com.google.dagger:hilt-android:2.44.2")
+    implementation("com.google.dagger:hilt-android:2.45")
     implementation("androidx.core:core-ktx:1.10.1")
     kapt("com.google.dagger:hilt-android-compiler:2.44.2")
     kapt("androidx.hilt:hilt-compiler:1.0.0")

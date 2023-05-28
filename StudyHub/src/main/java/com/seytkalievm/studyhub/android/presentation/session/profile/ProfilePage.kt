@@ -46,7 +46,6 @@ fun ProfilePage(
             }
         } else {
             LaunchedEffect(Unit) {
-                //TODO(Navigation is not found. App crashes)
                 navController.navigate(Screen.AuthScreen.route) {
                     popUpTo(Screen.HomeScreen.route) {inclusive = true}
                 }

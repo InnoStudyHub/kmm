@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.seytkalievm.studyhub.android.presentation.auth.login.LoginScreen
 import com.seytkalievm.studyhub.android.presentation.session.deck_view.DeckViewPage
 import com.seytkalievm.studyhub.android.presentation.session.home.HomePage
 import com.seytkalievm.studyhub.android.presentation.session.navigation.nav_bar.NavigationItem
@@ -26,6 +27,10 @@ fun Navigation(navController: NavHostController) {
         }
         composable(Screen.DeckViewScreen.route) {
             DeckViewPage()
+        }
+        //TODO should implement nested navControllers
+        composable(Screen.AuthScreen.route) {
+            LoginScreen(navController)
         }
     }
 }
