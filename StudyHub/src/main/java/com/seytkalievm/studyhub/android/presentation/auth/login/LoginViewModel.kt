@@ -30,7 +30,6 @@ class LoginViewModel @Inject constructor(
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), LoginPageState())
 
     fun login() {
-        //TODO: Валидация данных, навигация в session при успешном логине
         viewModelScope.launch(Dispatchers.IO) {
             api.login(login.value, password.value)
             savedStateHandle["isLoggedIn"] = api.isLoggedIn()

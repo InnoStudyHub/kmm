@@ -9,6 +9,7 @@ import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -44,7 +45,13 @@ fun ProfilePage(
                 Text(text = "Log out")
             }
         } else {
-            navController.navigate(Screen.AuthScreen.route)
+            LaunchedEffect(Unit) {
+                //TODO(Navigation is not found. App crashes)
+                navController.navigate(Screen.AuthScreen.route) {
+                    popUpTo(Screen.HomeScreen.route) {inclusive = true}
+                }
+            }
+
         }
     }
 }

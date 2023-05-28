@@ -18,25 +18,11 @@ class ProfilePageViewModel @Inject constructor(
     private val authApi: AuthApi
 ) : ViewModel() {
 
-    init {
-        viewModelScope.launch {
-            savedStateHandle["log_out"] = authApi.isLoggedIn()
-        }
-    }
-
     private val isLoggedIn: Flow<Boolean> = savedStateHandle.getStateFlow("log_out", true)
-
-    //private val isLoggedIn: Flow<Boolean> = flow { emit(authApi.isLoggedIn()) }
 
     val state = isLoggedIn.map { isLoggedIn ->
         ProfilePageState(isLoggedInState = isLoggedIn)
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ProfilePageState())
-
-    /*fun cheksIsLoggedIn() {
-        viewModelScope.launch {
-            savedStateHandle["log_out"] = authApi.isLoggedIn()
-        }
-    }*/
 
     fun logout() {
         viewModelScope.launch {
