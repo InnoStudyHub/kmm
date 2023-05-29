@@ -1,5 +1,7 @@
 package com.seytkalievm.studyhub.domain.api
 
+import kotlinx.coroutines.flow.Flow
+
 interface AuthApi {
 
     suspend fun login(email: String, password: String)
@@ -8,5 +10,5 @@ interface AuthApi {
 
     suspend fun logout()
 
-    suspend fun isLoggedIn(): Boolean
+    val isLoggedIn: Flow<Boolean>
 }

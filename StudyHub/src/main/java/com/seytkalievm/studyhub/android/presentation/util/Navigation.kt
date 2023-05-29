@@ -18,11 +18,11 @@ fun Navigation(
 ) {
     val navController = rememberNavController()
     val startDest = Screen.LoadingScreen.route
-    val loggedState by viewModel.loggedState.collectAsState()
+    val loggedState by viewModel.loggedState.collectAsState(initial = LoggedState.Loading)
 
 
     NavHost(navController = navController, startDestination = startDest) {
-        composable(Screen.AuthScreen.route) { LoginScreen(navController) }
+        composable(Screen.AuthScreen.route) { LoginScreen() }
         composable(Screen.LoadingScreen.route) { LoadingScreen() }
         composable(Screen.HomeScreen.route) { MainScreen() }
     }
@@ -31,9 +31,13 @@ fun Navigation(
         when (loggedState) {
             LoggedState.Loading -> navController.navigate(Screen.LoadingScreen.route)
 
-            LoggedState.LoggedIn -> navController.navigate(Screen.HomeScreen.route)
+            LoggedState.LoggedIn -> navController.navigate(Screen.HomeScreen.route) {
+                 this.popUpTo(Screen.HomeScreen.route)
+            }
 
-            LoggedState.NotLoggedIn -> navController.navigate(Screen.AuthScreen.route)
+            LoggedState.NotLoggedIn -> navController.navigate(Screen.AuthScreen.route) {
+                popUpTo(Screen.LoadingScreen.route)
+            }
         }
     }
 }

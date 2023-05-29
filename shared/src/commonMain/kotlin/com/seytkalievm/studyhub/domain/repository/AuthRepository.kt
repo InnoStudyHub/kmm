@@ -13,8 +13,7 @@ import io.ktor.client.call.body
 import io.ktor.client.request.post
 import io.ktor.client.request.header
 import io.ktor.client.request.setBody
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
@@ -69,7 +68,6 @@ class AuthRepository(private val dataStore: DataStore<Preferences>) : AuthApi {
         }
     }
 
-    override suspend fun isLoggedIn(): Boolean {
-        return dataStore.data.map { it[accessToken] }.first() != null
-    }
+    override val isLoggedIn: Flow<Boolean>
+    get() =  dataStore.data.map { preferences -> preferences[accessToken] != null }
 }
