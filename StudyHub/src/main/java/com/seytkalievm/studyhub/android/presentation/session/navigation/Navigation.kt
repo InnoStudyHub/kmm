@@ -2,8 +2,10 @@ package com.seytkalievm.studyhub.android.presentation.session.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.seytkalievm.studyhub.android.presentation.auth.login.LoginScreen
 import com.seytkalievm.studyhub.android.presentation.session.deck_view.DeckViewPage
 import com.seytkalievm.studyhub.android.presentation.session.home.HomePage
@@ -25,8 +27,11 @@ fun Navigation(navController: NavHostController) {
         composable(NavigationItem.Profile.route) {
             ProfilePage(navController)
         }
-        composable(Screen.DeckViewScreen.route) {
-            DeckViewPage()
+        composable(Screen.DeckViewScreen.route + "/{deckId}",
+            arguments = listOf(navArgument("deckId") {
+                type = NavType.StringType
+            })) { entry ->
+            DeckViewPage(deckId = entry.arguments?.getString("deckId")!!)
         }
         //TODO should implement nested navControllers
         composable(Screen.AuthScreen.route) {

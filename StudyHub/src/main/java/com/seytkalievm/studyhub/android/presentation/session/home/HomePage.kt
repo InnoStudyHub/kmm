@@ -43,7 +43,9 @@ fun HomePage(
                 DeckItem(
                     deck = state.decks[i],
                     onDeckClick = {
-                        navController.navigate(Screen.DeckViewScreen.route)
+                        navController.navigate(
+                            Screen.DeckViewScreen.withArgs(state.decks[i].id.toString())
+                        )
                     },
                 )
             }
