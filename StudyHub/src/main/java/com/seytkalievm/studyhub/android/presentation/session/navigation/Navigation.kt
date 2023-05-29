@@ -1,5 +1,6 @@
 package com.seytkalievm.studyhub.android.presentation.session.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -13,6 +14,8 @@ import com.seytkalievm.studyhub.android.presentation.session.navigation.nav_bar.
 import com.seytkalievm.studyhub.android.presentation.session.profile.ProfilePage
 import com.seytkalievm.studyhub.android.presentation.session.search.SearchPage
 import com.seytkalievm.studyhub.android.presentation.util.Screen
+import com.seytkalievm.studyhub.android.presentation.util.fromJson
+import com.seytkalievm.studyhub.domain.model.Deck
 
 
 @Composable
@@ -27,11 +30,16 @@ fun Navigation(navController: NavHostController) {
         composable(NavigationItem.Profile.route) {
             ProfilePage(navController)
         }
-        composable(Screen.DeckViewScreen.route + "/{deckId}",
-            arguments = listOf(navArgument("deckId") {
+        composable(Screen.DeckViewScreen.route + "/{deck}",
+            arguments = listOf(navArgument("deck") {
                 type = NavType.StringType
             })) { entry ->
-            DeckViewPage(deckId = entry.arguments?.getString("deckId")!!)
+            entry.arguments?.getString("deck")?.let { jsonString ->
+                val deck = jsonString.fromJson(Deck::class.java)
+                DeckViewPage(deck = deck)
+            }
+
+
         }
         //TODO should implement nested navControllers
         composable(Screen.AuthScreen.route) {

@@ -1,5 +1,6 @@
 package com.seytkalievm.studyhub.android.presentation.session.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.seytkalievm.studyhub.android.presentation.session.common_widgets.DeckItem
 import com.seytkalievm.studyhub.android.presentation.util.Screen
+import com.seytkalievm.studyhub.android.presentation.util.toJson
 
 @Composable
 fun HomePage(
@@ -43,8 +45,10 @@ fun HomePage(
                 DeckItem(
                     deck = state.decks[i],
                     onDeckClick = {
+                        Log.d("LOG_DECK", state.decks[i].toJson().toString())
+                        val deckString = state.decks[i].toJson().toString()
                         navController.navigate(
-                            Screen.DeckViewScreen.withArgs(state.decks[i].id.toString())
+                            Screen.DeckViewScreen.withArgs(deckString)
                         )
                     },
                 )

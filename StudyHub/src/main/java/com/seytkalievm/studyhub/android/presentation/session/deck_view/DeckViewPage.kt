@@ -1,5 +1,6 @@
 package com.seytkalievm.studyhub.android.presentation.session.deck_view
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -38,14 +39,15 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.seytkalievm.studyhub.domain.model.Deck
 
 @Composable
 fun DeckViewPage(
-    deckId: String,
+    deck: Deck,
     viewModel: DeckViewPageViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
-    Toast.makeText(LocalContext.current, deckId, Toast.LENGTH_SHORT).show()
+    Log.d("LOG_DECK", deck.toString())
 
     Column(
         modifier = Modifier
@@ -55,17 +57,23 @@ fun DeckViewPage(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         DeckInfo(
-            title = "Mathematical Analysis I",
-            author = "Dias Usenov",
-            year = "2022"
+            title = deck.deckName,
+            author = deck.authorId.toString(),
+            year = deck.semester,
+            number = deck.cards.size
         )
-        ScrollableCards()
+        LazyRow {
+            items(deck.cards.size) { index ->
+                DeckCard(question = deck.cards[index].question)
+            }
+        }
+        //ScrollableCards()
         Buttons()
     }
 }
 
 @Composable
-private fun DeckInfo(title: String, author: String, year: String, modifier: Modifier = Modifier) {
+private fun DeckInfo(title: String, author: String, year: String, number: Int, modifier: Modifier = Modifier) {
     Column(
         modifier.fillMaxWidth(),
     ) {
@@ -75,7 +83,7 @@ private fun DeckInfo(title: String, author: String, year: String, modifier: Modi
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             InfoField(text = year, imageVector = Icons.Default.CalendarMonth)
-            NumberOfCards(cards = 14)
+            NumberOfCards(cards = number)
         }
     }
 }

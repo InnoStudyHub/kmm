@@ -35,7 +35,7 @@ fun DeckItem(
     ) {
         Row(
             modifier = Modifier
-                .padding(top=10.dp)
+                .padding(top = 10.dp)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -106,7 +106,7 @@ private fun CourseName(name: String, modifier: Modifier = Modifier) {
 
 @Composable
 private fun Semester(semester: String, modifier: Modifier = Modifier) {
-    Box (modifier = modifier.padding(top=7.dp)){
+    Box(modifier = modifier.padding(top = 7.dp)) {
         Text(
             text = semester,
             color = Color.DarkGray,
