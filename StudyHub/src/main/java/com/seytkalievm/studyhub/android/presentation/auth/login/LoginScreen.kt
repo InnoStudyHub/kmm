@@ -12,25 +12,18 @@ import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.seytkalievm.studyhub.android.presentation.auth.EmailTextField
 import com.seytkalievm.studyhub.android.presentation.auth.PasswordTextField
-import com.seytkalievm.studyhub.android.presentation.util.Screen
 
 @Composable
 fun LoginScreen(
-    navController: NavController,
     loginViewModel: LoginViewModel = hiltViewModel()
 ) {
-    val state by loginViewModel.state.collectAsState()
 
     Scaffold { paddingValues ->
         Column(
@@ -42,14 +35,6 @@ fun LoginScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             val context = LocalContext.current
-            if (state.isLoggedInState) {
-                LaunchedEffect(Unit){
-                    navController.navigate(Screen.HomeScreen.route) {
-                        //TODO(exit app when backpressed)
-                        popUpTo(Screen.LoadingScreen.route) {inclusive = true}
-                    }
-                }
-            } else {
                 EmailTextField(value = loginViewModel.login)
                 PasswordTextField(value = loginViewModel.password)
                 Button(
@@ -77,13 +62,10 @@ fun LoginScreen(
                     Text("Don't have an account?")
                     Text(
                         text = "Register",
-                        modifier = Modifier
-                            .clickable {
-                                navController.navigate("")
-                            }
+                        modifier = Modifier.clickable {}
                     )
                 }
-            }
+
         }
 
     }

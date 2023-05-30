@@ -28,7 +28,7 @@ fun Navigation(navController: NavHostController) {
             SearchPage()
         }
         composable(NavigationItem.Profile.route) {
-            ProfilePage(navController)
+            ProfilePage()
         }
         composable(Screen.DeckViewScreen.route + "/{deck}",
             arguments = listOf(navArgument("deck") {
@@ -40,10 +40,6 @@ fun Navigation(navController: NavHostController) {
             }
 
 
-        }
-        //TODO should implement nested navControllers
-        composable(Screen.AuthScreen.route) {
-            LoginScreen(navController)
         }
     }
 }

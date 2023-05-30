@@ -21,18 +21,14 @@ import androidx.navigation.NavController
 import com.seytkalievm.studyhub.android.presentation.util.Screen
 
 @Composable
-fun ProfilePage(
-    navController: NavController,
-    viewModel: ProfilePageViewModel = hiltViewModel(),
-) {
-    val state by viewModel.state.collectAsState()
+fun ProfilePage(viewModel: ProfilePageViewModel = hiltViewModel(), ) {
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if(state.isLoggedInState) {
+
             Button(
                 onClick = {
                     viewModel.logout()
@@ -43,13 +39,6 @@ fun ProfilePage(
                 colors = ButtonDefaults.buttonColors(backgroundColor = Color.Cyan),
             ) {
                 Text(text = "Log out")
-            }
-        } else {
-            LaunchedEffect(Unit) {
-                navController.navigate(Screen.AuthScreen.route) {
-                    popUpTo(Screen.HomeScreen.route) {inclusive = true}
-                }
-            }
 
         }
     }
