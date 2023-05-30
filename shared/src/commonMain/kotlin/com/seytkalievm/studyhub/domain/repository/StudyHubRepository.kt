@@ -45,4 +45,27 @@ class StudyHubRepository(private val dataStore: DataStore<Preferences>) : StudyH
             throw (e)
         }
     }
+
+    override suspend fun searchDecks(query: String): List<Deck> {
+        val token = dataStore.data.map { it[stringPreferencesKey("access")] }.first()
+
+        try {
+            val response = httpClient.post("$BaseUrl/user/search/") {
+
+                header("X-API-KEY", ApiKey)
+                header("Content-Type", "application/json")
+                header("Origin", "http://studyhub.kz")
+                header("Accept", "*/*")
+                header("Authorization", "Bearer $token")
+                setBody(Json.encodeToString("query" to query))
+            }
+
+            val result: SearchResult = response.body()
+
+            return result.decks
+        } catch (e: Exception) {
+            println(e.message)
+            throw (e)
+        }
+    }
 }
