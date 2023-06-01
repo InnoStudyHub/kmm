@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +33,7 @@ fun DeckItem(
             .clickable { onDeckClick() }
             .background(Color.LightGray)
             .padding(start = 16.dp, end = 16.dp, top = 10.dp, bottom = 10.dp)
+            //.testTag("deck")
     ) {
         Row(
             modifier = Modifier

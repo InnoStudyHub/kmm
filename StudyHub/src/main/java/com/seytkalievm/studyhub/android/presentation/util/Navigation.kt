@@ -4,6 +4,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,6 +16,7 @@ import com.seytkalievm.studyhub.android.presentation.auth.login.LoginScreen
 import com.seytkalievm.studyhub.android.presentation.session.MainScreen
 
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun Navigation(
     viewModel: NavigationViewModel = hiltViewModel()
@@ -21,7 +26,12 @@ fun Navigation(
     val loggedState by viewModel.loggedState.collectAsState(initial = LoggedState.Loading)
 
 
-    NavHost(navController = navController, startDestination = startDest) {
+    NavHost(
+        navController = navController,
+        startDestination = startDest,
+        //modifier = Modifier.semantics { testTagsAsResourceId }
+        )
+    {
         composable(Screen.AuthScreen.route) { LoginScreen() }
         composable(Screen.LoadingScreen.route) { LoadingScreen() }
         composable(Screen.HomeScreen.route) { MainScreen() }
@@ -32,7 +42,7 @@ fun Navigation(
             LoggedState.Loading -> navController.navigate(Screen.LoadingScreen.route)
 
             LoggedState.LoggedIn -> navController.navigate(Screen.HomeScreen.route) {
-                 this.popUpTo(Screen.HomeScreen.route)
+                this.popUpTo(Screen.HomeScreen.route)
             }
 
             LoggedState.NotLoggedIn -> navController.navigate(Screen.AuthScreen.route) {

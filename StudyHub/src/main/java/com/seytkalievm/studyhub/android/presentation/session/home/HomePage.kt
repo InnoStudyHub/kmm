@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -40,6 +41,7 @@ fun HomePage(
     ) {
         LazyColumn(
             modifier = Modifier.weight(1f),
+                //.testTag("deck_list"),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(state.decks.size) { i ->
