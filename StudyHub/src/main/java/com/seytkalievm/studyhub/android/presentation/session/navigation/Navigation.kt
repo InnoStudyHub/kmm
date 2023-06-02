@@ -25,7 +25,7 @@ fun Navigation(navController: NavHostController) {
             HomePage(navController)
         }
         composable(NavigationItem.Search.route) {
-            SearchPage()
+            SearchPage(navController)
         }
         composable(NavigationItem.Profile.route) {
             ProfilePage()
