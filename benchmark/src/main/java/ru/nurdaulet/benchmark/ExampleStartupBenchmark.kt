@@ -33,7 +33,7 @@ class ExampleStartupBenchmark {
     @Test
     fun startup() = benchmarkRule.measureRepeated(
         packageName = "com.seytkalievm.studyhub.android",
-        metrics = listOf(StartupTimingMetric()),
+        metrics = listOf(StartupTimingMetric(), FrameTimingMetric()),
         iterations = 10,
         startupMode = StartupMode.COLD
     ) {
